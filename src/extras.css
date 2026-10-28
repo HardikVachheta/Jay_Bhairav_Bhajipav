@@ -1,0 +1,121 @@
+/* ---------- Nav breakpoint (6 links need room) ---------- */
+@media (min-width: 1100px) {
+  .nav { display: flex; }
+  .burger { display: none; }
+}
+
+/* ---------- Cards: tilt wrapper, price chips, steam ---------- */
+.card-wrap { display: flex; min-width: 0; }
+.card-wrap > .card { flex: 1; min-width: 0; transform-style: preserve-3d; will-change: transform; }
+.card:hover { box-shadow: var(--shadow-lg), 0 0 0 2px rgba(245, 158, 11, .35); }
+.card__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(24,5,5,.25)); pointer-events: none; }
+.card:hover .food-img { transform: scale(1.1) rotate(-1deg); }
+
+.prices { margin-top: auto; padding-top: 4px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.price-chip {
+  flex: 1 1 0; min-width: 88px; display: flex; flex-direction: column; align-items: center; gap: 1px;
+  padding: 8px 10px; border-radius: 14px; background: var(--cream-2); border: 1px solid var(--line); line-height: 1.15;
+}
+.price-chip em { font-style: normal; font-size: 11px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-2); }
+.price-chip b { font-size: 16px; font-weight: 800; color: var(--red-deep); }
+.price-chip--hi { background: linear-gradient(135deg, #fef3c7, #fde68a); border-color: #fcd34d; }
+.prices--one .price-chip { flex: 0 1 auto; min-width: 110px; }
+.prices__ask { font-size: 13.5px; font-weight: 700; color: var(--ink-2); }
+
+.steam { position: absolute; bottom: -10px; width: 28px; height: 64px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.65), transparent); filter: blur(7px); opacity: 0; pointer-events: none; z-index: 1; }
+.steam:nth-of-type(1) { left: 28%; }
+.steam:nth-of-type(2) { left: 48%; animation-delay: .6s !important; }
+.steam:nth-of-type(3) { left: 66%; animation-delay: 1.2s !important; }
+.card:hover .steam, .card:focus-within .steam { animation: steam 2.4s ease-in infinite; }
+@keyframes steam {
+  0% { opacity: 0; transform: translateY(14px) scaleX(1); }
+  30% { opacity: .85; }
+  100% { opacity: 0; transform: translateY(-84px) scaleX(1.9); }
+}
+@media (hover: none) { .steam { animation: steam 3s ease-in infinite; } }
+
+/* ---------- Marquee ---------- */
+.marquee { background: linear-gradient(90deg, var(--red-deep), var(--red), var(--red-deep)); color: #fff; overflow: hidden; padding: 12px 0; border-block: 3px solid var(--gold); }
+.marquee__track { display: flex; width: max-content; animation: marq 36s linear infinite; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee__item { display: inline-flex; align-items: center; padding: 0 22px; font-family: var(--display); font-weight: 900; font-size: 18px; white-space: nowrap; }
+.marquee__item::after { content: '✦'; color: var(--gold); margin-left: 44px; font-size: 14px; }
+@keyframes marq { to { transform: translateX(-50%); } }
+
+/* ---------- Price list board ---------- */
+.pricelist { background: #fff; }
+.board {
+  position: relative; color: #f4f4f5; border-radius: 26px; padding: 16px 12px 20px;
+  background: radial-gradient(800px 360px at 8% 0, rgba(220, 38, 38, .32), transparent 60%), radial-gradient(700px 320px at 100% 100%, rgba(245, 158, 11, .18), transparent 60%), #18181b;
+  box-shadow: var(--shadow-lg), inset 0 0 0 2px rgba(217, 119, 6, .7);
+}
+.board__top { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; padding: 8px 0 14px; }
+.board__title { font-family: var(--display); font-weight: 900; font-size: clamp(22px, 5vw, 32px); color: #fff; }
+.board__title em { font-style: normal; color: var(--gold); }
+.board__legend { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: #a1a1aa; font-weight: 700; }
+.jump { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px 14px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.jump::-webkit-scrollbar { display: none; }
+.jump button { flex: none; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: #f4f4f5; border-radius: 999px; padding: 8px 14px; font-size: 13px; font-weight: 700; transition: background .2s, border-color .2s; }
+.jump button:hover { background: rgba(245, 158, 11, .2); border-color: var(--gold); }
+.board__grid { display: grid; gap: 16px; }
+.tbl { scroll-margin-top: calc(var(--header-h) + 12px); background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09); border-radius: 18px; padding: 12px 10px 6px; }
+.mt { width: 100%; border-collapse: collapse; font-size: 14px; }
+.mt caption { caption-side: top; text-align: left; font-family: var(--display); font-weight: 900; font-size: 20px; color: var(--gold); padding: 2px 6px 10px; }
+.mt caption .gu { font-size: 13px; color: #fca5a5; margin-left: 6px; }
+.mt thead th { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #a1a1aa; font-weight: 800; padding: 8px 8px; background: rgba(255,255,255,.06); text-align: left; }
+.mt thead th:first-child { border-radius: 10px 0 0 10px; }
+.mt thead th:last-child { border-radius: 0 10px 10px 0; }
+.mt th, .mt td { padding: 10px 8px; border-bottom: 1px dashed rgba(255,255,255,.16); vertical-align: middle; }
+.mt tbody tr:last-child th, .mt tbody tr:last-child td { border-bottom: 0; }
+.mt tbody tr { transition: background .2s; }
+.mt tbody tr:hover { background: rgba(245, 158, 11, .08); }
+.mt tbody th { text-align: left; font-weight: 700; color: #fff; }
+.mt__name { margin-right: 6px; }
+.mt tbody th .gu { display: block; font-size: 12px; font-weight: 600; color: #fca5a5; margin-top: 1px; }
+.mt .num { text-align: right; white-space: nowrap; font-weight: 800; color: #fde68a; font-variant-numeric: tabular-nums; width: 74px; }
+.mt thead .num { color: #a1a1aa; }
+.mt .num--text { width: auto; white-space: normal; max-width: 150px; line-height: 1.35; }
+.mt .num--ask { font-style: italic; font-weight: 600; color: #a1a1aa; width: auto; }
+.mt .dash { color: #52525b; }
+.tag { display: inline-block; font-size: 10px; font-weight: 800; padding: 1px 7px; border-radius: 999px; vertical-align: 1px; margin-right: 4px; }
+.tag--jain { background: #dcfce7; color: #166534; }
+.tag--swami { background: #ffedd5; color: #9a3412; }
+.tag--sig { background: var(--gold); color: #18181b; }
+
+@media (min-width: 640px) {
+  .board { padding: 22px 22px 26px; }
+  .mt { font-size: 15px; }
+  .mt .num { width: 96px; }
+  .mt th, .mt td { padding: 11px 10px; }
+  .jump { justify-content: center; flex-wrap: wrap; overflow: visible; }
+}
+@media (min-width: 1000px) {
+  .board__grid { grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+}
+
+/* ---------- Floating call / WhatsApp ---------- */
+.fa { position: fixed; z-index: 60; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: 1fr 2fr; gap: 10px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: rgba(255, 253, 247, .92); backdrop-filter: blur(12px); border-top: 1px solid var(--line); }
+.fa a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 14px; border-radius: 14px; font-weight: 800; font-size: 15px; }
+.fa .fa__call { background: #fff; border: 2px solid var(--line); color: var(--ink); }
+.fa__wa { background: var(--wa); color: #fff; animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(31,168,85,.5); } 50% { box-shadow: 0 0 0 10px rgba(31,168,85,0); } }
+@media (min-width: 900px) {
+  .fa { left: auto; right: 22px; bottom: 22px; padding: 0; background: none; backdrop-filter: none; border: 0; display: block; }
+  .fa .fa__call { display: none; }
+  .fa__wa { border-radius: 999px; padding: 14px 22px; box-shadow: var(--shadow-lg); }
+}
+
+/* ---------- Status chips (shared) ---------- */
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 700; }
+.chip--open { background: #dcfce7; color: #166534; }
+.chip--closed { background: #fee2e2; color: #991b1b; }
+.hero2 .chip--glass { color: #fff; }
+
+/* ---------- Price list: stacked option prices ---------- */
+.mt .opt { display: block; white-space: nowrap; }
+.mt .opt i { font-style: normal; font-weight: 600; font-size: 11px; color: #a1a1aa; margin-right: 4px; text-transform: uppercase; letter-spacing: .04em; }
+@media (max-width: 639px) {
+  .mt .num { width: 62px; }
+  .mt .num--text { width: 96px; }
+  .mt th, .mt td { padding: 9px 6px; }
+}
