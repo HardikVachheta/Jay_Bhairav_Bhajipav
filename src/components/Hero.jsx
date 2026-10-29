@@ -17,7 +17,7 @@ const SLIDES = [
 const SLIDE_MS = 5500;
 
 const WORDS = [
-  ["Ahmedabad's"], ['Favorite'], ['Pav', 1], ['Bhaji,', 1], ['Crispy'], ['Dosas', 1], ['&'], ['Sizzling'], ['Chinese.', 1],
+  ["Ahmedabad's"], ['Favorite'], ['Pav', 1], ['Bhaji,', 1], ['Crispy'], ['Dosas', 1], ['&'], ['Spicy'], ['Chinese.', 1],
 ];
 
 const TRUST = [
